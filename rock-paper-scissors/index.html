@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rock, Paper, Scissors, Lizard, Spock</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com"> 
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3.0.7/dist/vue.global.prod.js"></script>
+</head>
+<body>
+  <main id="app" class="main">
+    <header class="header">
+      <img class="logo" src="images/logo-bonus.svg" alt="Rock, Paper, Scissors, Lizard, Spock">
+      <div class="score">
+        <h3 class="score-title">Score</h3>
+        <h4 class="score-points">{{ score }}</h4>
+      </div>
+    </header>
+    <section class="board">
+      <div class="actions" v-show="!pick">
+        <div class="action"
+            v-for="action in actions"
+            :class="action"
+            @click="picked(action)">
+          <img :src="image(action)" :alt="action">
+        </div>
+      </div>
+      <div class="picks" v-show="pick">
+        <div class="pick your-pick">
+          <div v-if="winner === 'you'" class="winner"></div>
+          <div class="action" :class="pick">
+            <img :src="image(pick)" alt="pick">
+          </div>
+          <p class="pick-label">You Picked</p>
+        </div>
+        <div class="pick house-pick">
+          <div v-if="winner === 'house'" class="winner"></div>
+          <div v-if="house" class="action" :class="house">
+            <img :src="image(house)" alt="house">
+          </div>
+          <div v-else class="pick-placeholder"></div>
+
+          <p class="pick-label">The House Picked</p>
+        </div>      
+      </div>
+      <div class="endgame" v-show="winner">
+        <transition enter-active-class="animate__animated animate__bounceIn">
+          <h1 class="result" v-if="winner === 'you'">You win</h1>
+          <h1 class="result" v-else-if="winner === 'house'">You lose</h1>
+          <h1 class="result" v-else-if="winner === 'tie'">Tie</h1>
+        </transition>
+        <transition name="fade">
+          <button class="button" 
+                  v-show="again"
+                  @click="reset">Play Again</button>
+        </transition>
+      </div>
+    </section>
+    <section class="rules">
+      <button class="button button-outline"
+        @click="rules=true">Rules</button>
+      <transition name="fade">
+        <div class="modal" v-show="rules">
+          <div class="modal-content">
+            <h2>Rules</h2>
+            <img src="images/image-rules-bonus.svg" alt="Rules for rock, paper, scissors, lizard, spock">
+            <button class="close"
+              @click="rules=false">
+              <img src="images/icon-close.svg" alt="close">
+            </button>
+          </div>
+        </div>
+      </transition>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

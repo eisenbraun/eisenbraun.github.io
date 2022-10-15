@@ -1,0 +1,571 @@
+/*********************
+* Variables
+*********************/
+
+:root {
+  --dark-text: hsl(229, 25%, 31%);
+  --score-text: hsl(229, 64%, 46%);
+  --border-color: hsl(217, 16%, 45%);
+
+  --md: 728px;
+  --lg: 1024px; 
+}
+
+
+/*********************
+* Typography
+*********************/
+
+/* @import url('https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;600;700&display=swap'); */
+
+
+/*********************
+* Base
+*********************/
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  display: grid;
+  align-items: start;
+  
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: hsl(214, 47%, 23%);
+  background-image: radial-gradient(circle at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+  font-family: 'Barlow Semi Condensed', sans-serif;
+  font-weight: 600;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+/*********************
+* Buttons
+*********************/
+
+.button {
+  display: inline-block;
+  
+  padding: 10px 30px;
+
+  background-color: #fff;
+  border: 0;
+  border-radius: 10px;
+  color: var(--dark-text);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+}
+
+.button-outline {
+  background-color: transparent;
+  border: 2px solid #8991A8;
+  color: #fff;
+}
+
+/*********************
+* Main
+*********************/
+
+.main {
+  display: grid;
+  grid-template-rows: 115px 1fr;
+  grid-gap: 1rem;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+
+  height: 100%;
+  padding: 1rem 0;
+}
+
+/*********************
+* Header
+*********************/
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 2rem);
+  max-width: 900px;
+  padding: 1rem;
+  border: 3px solid var(--border-color);
+  border-radius: 10px;
+}
+
+.logo {
+  max-width: 75px;
+}
+
+.score {
+  display: grid;
+  justify-content: center;
+
+  padding: .5rem 2rem;
+
+  background-color: #fff;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.score-title {
+  color: var(--score-text);
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.score-points {
+  color: #555467;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+/*********************
+* Board
+*********************/
+
+.board {
+  display: grid;
+  justify-items: center;
+
+  width: 100vw;
+  height: 300px;
+}
+
+/*********************
+* Actions
+*********************/
+
+.actions {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 2fr 1fr;
+  justify-items: center;
+  width: 300px;
+
+  background-image: url("images/bg-pentagon.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 250px;
+}
+
+.action {
+  position: relative;
+
+  display: grid;
+  justify-items: center;
+  align-items: center;
+
+  /* padding: 1.5rem; */
+  width: 88px;
+  height: 88px;
+
+  background-color: #fff;
+  border: 10px solid #666;
+  border-radius: 50%;
+  box-shadow: inset 0px 5px 3px rgba(0,0,0,0.3);
+  cursor: pointer;
+  text-align: center;
+}
+
+.action::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: -5px;
+  left: -10px;
+  display: block;
+  width: 68px;
+  height: 68px;
+  background-color: #fff;
+  border: 10px solid;
+  border-radius: 50%;
+}
+
+.action img {
+  max-height: 60%;
+}
+
+.scissors {
+  border-color: hsl(40, 84%, 53%);
+}
+
+.scissors::before {
+  border-color: #C67013;
+}
+
+.spock {
+  align-self: center;
+  margin-top: 25px;
+
+  border-color: hsl(189, 59%, 53%);
+}
+
+.spock::before {
+  border-color: #388DAA;
+}
+
+.paper {
+  align-self: center;
+  margin-top: 25px;
+
+  border-color: hsl(230, 89%, 62%);
+}
+
+.paper::before {
+  border-color: #2946C5;
+}
+
+.lizard {
+  justify-self: end;
+  align-self: center;
+
+  margin-right: -20px;
+
+  border-color: hsl(261, 73%, 60%);
+}
+
+.lizard::before {
+  border-color: #5D37A7;
+}
+
+.rock {
+  justify-self: start;
+  align-self: center;
+  grid-column: 3;
+
+  margin-left: -20px;
+
+  border-color: hsl(349, 71%, 52%);
+}
+
+.rock::before {
+  border-color: #9F1833;
+}
+
+/*********************
+* picks
+*********************/
+
+.picks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-content: start;
+
+  width: calc(100% - 4rem);
+  max-width: 900px;
+}
+
+.pick {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.pick .action {
+  grid-column: 1;
+  width: 120px;
+  height: 120px;
+  margin: 0;
+  cursor: auto;
+}
+
+.pick .action::before {
+  width: 100px;
+  height: 100px;
+}
+
+.pick-placeholder {
+  width: 120px;
+  height: 120px;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 50%;
+}
+
+.your-pick {
+  justify-self: start;
+}
+
+.house-pick {
+  justify-self: end;
+}
+
+.pick-label {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.winner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 123px;
+  height: 125px;
+
+  background-color: transparent;
+  /* box-shadow: 0 0 0px 15px rgba(255,255,255, 0.05), 
+              0 0 0px 45px rgba(255,255,255, 0.04),
+              0 0 0px 90px rgba(255,255,255, 0.03); */
+  border-radius: 50%;
+
+  animation: ripple 0.3s cubic-bezier(.48,.28,1,1.43) forwards;
+}
+
+/*********************
+* Endgame
+*********************/
+
+.endgame {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.result {
+  color: #fff;
+  font-size: 4rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+
+/*********************
+* Rules
+*********************/
+.rules {
+  padding: 1rem;
+}
+
+.modal {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: #fff;
+}
+
+.modal-content {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  display: grid;
+  grid-template-rows: 115px 1fr;
+  justify-content: center;
+
+  padding: 1rem;
+  
+  background-color: #fff;
+}
+
+.modal h2 {
+  align-self: end;
+
+  color: var(--dark-text);
+  font-size: 3rem;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.modal img {
+  grid-row: 2;
+  align-self: center;
+  max-width: 100%;
+}
+
+.close {
+  grid-row: 3;
+  align-self: end;
+  display: inline-block;
+  
+  background-color: transparent;
+  border: 0;
+  padding: 10px;
+}
+
+
+
+/*********************
+* Animations
+*********************/
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0px 0px rgba(255,255,255, 0.05), 
+            0 0 0px 0px rgba(255,255,255, 0.04),
+            0 0 0px 0px rgba(255,255,255, 0.03);
+  }
+  /* 33% {
+    box-shadow: 0 0 0px 15px rgba(255,255,255, 0.05), 
+            0 0 0px 0px rgba(255,255,255, 0.04),
+            0 0 0px 0px rgba(255,255,255, 0.03);
+  }
+  66% {
+    box-shadow: 0 0 0px 15px rgba(255,255,255, 0.05), 
+            0 0 0px 45px rgba(255,255,255, 0.04),
+            0 0 0px 0px rgba(255,255,255, 0.03);
+  } */
+  100% {
+    box-shadow: 0 0 0px 15px rgba(255,255,255, 0.05), 
+                0 0 0px 45px rgba(255,255,255, 0.04),
+                0 0 0px 90px rgba(255,255,255, 0.03);
+  }
+}
+
+/*********************
+* Media Queries
+*********************/
+
+@media (min-width: 768px) {
+  .main {
+    padding: 3rem 0;
+  }
+
+  .logo {
+    max-width: 100%;
+  }
+
+  .score {
+    padding: 1rem 2.5rem;
+  }
+  
+  .score-title {
+    font-size: 1rem;
+  }
+  
+  .score-points {
+    font-size: 4rem;
+  }
+
+  .board {
+    height: 450px;
+  }
+
+  .actions {
+    background-size: 375px;
+    width: 450px;
+  }
+
+  .action {
+    width: 120px;
+    height: 120px;
+  }
+
+  .action::before {
+    width: 100px;
+    height: 100px;
+  }
+
+  .modal {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    background-color: rgba(0,0,0,0.5);
+  }
+
+  .modal-content {
+    position: relative;
+
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 60px 1fr;
+    grid-gap: 2rem;
+
+    min-width: 550px;
+    min-height: 550px;
+
+    border-radius: 10px;
+  }
+
+  .modal h2 {
+    justify-self: start;
+    align-self: center;
+  }
+
+  .close {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: center;
+  }
+
+  .modal img {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+  }
+
+  .pick .action {
+    width: 240px;
+    height: 240px;
+    border-width: 20px;
+  }
+
+  .pick .action::before {
+    width: 210px;
+    height: 210px;
+    left: -15px;
+  }
+
+  .pick .action img {
+    height: 100px;
+  }  
+
+  .pick-placeholder {
+    width: 240px;
+    height: 240px;
+  }
+
+  .pick-label {
+    order: -1;
+  }
+
+  .winner {
+    top: 56px;
+    width: 240px;
+    height: 240px;
+  }
+
+  .rules {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    align-items: end;
+  }
+}

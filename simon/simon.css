@@ -1,0 +1,124 @@
+html, body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.simon {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  
+  width: 50vh;
+  height: 50vh;
+
+  border: 15px solid #000;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.lights {
+  display: flex;
+  flex-grow: 1;
+
+  background-color: #000;
+}
+
+.center {
+  position: relative;
+  height: 8px;
+  background-color: #000;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  
+  width: 25vh;
+  height: 25vh;
+  margin: auto;
+
+  background-color: #000;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
+.button, .message {
+  width: 25vh;
+  height: 25vh;
+
+  background-color: transparent;
+  border: 0px;
+  border-radius: 50%;
+  color: #fff;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 3vh;
+}
+
+.button {
+  cursor: pointer;
+}
+
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.light {
+  flex-grow: 1;
+  opacity: 0.5;
+  transform: opacity 0.3s;
+  
+  width: 200px;
+}
+
+.light:first-child {
+  margin-right: 4px;
+}
+
+.light:last-child {
+  margin-left: 4px;
+}
+
+.green {
+  background-color: green;
+}
+
+.red {
+  background-color: red;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.active {
+  opacity: 1;
+}
+
+.hide {
+  display: none;
+}
