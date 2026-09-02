@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+h1 {
+  font-family: "Homemade Apple", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 4rem;
+
+  text-align: center;
+}
+
+.gallery {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+  max-width: 1000px;
+  margin: auto;
+  padding: 3rem 2rem;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+}
+
+.image-container {
+  background-color: white;
+  border: 10px solid #333;
+  box-shadow: 0 0 8px 0px rgba(0,0,0,0.3);
+  padding: 2rem;
+  width: 256px;
+}
+
+img {
+  max-width: 100%;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.image-container {
+  filter: grayscale();
+  transition: 0.5s;
+}
+
+.image-container:nth-child(1) {
+  transform: translate(30px, 30px) rotate(10deg);
+}
+
+.image-container:nth-child(2) {
+  transform: translate(0px, 35px) rotate(-5deg);
+}
+
+.image-container:nth-child(3) {
+  transform: translate(-30px, 40px) rotate(5deg);
+}
+
+.image-container:nth-child(4) {
+  transform: translate(30px, -40px) rotate(-10deg);
+}
+
+.image-container:nth-child(5) {
+  transform: translate(0px, -50px) rotate(15deg);
+}
+
+.image-container:nth-child(6) {
+  transform: translate(-40px, -40px) rotate(-15deg);
+}
+
+.gallery:hover .image-container {
+  transform: none;
+  transition: 0.3s;
+}
+
+.gallery:hover .image-container:hover {
+  box-shadow: 0px 50px 100px -20px rgba(50, 50, 93, 0.25);
+  transform: scale(1.05);
+  filter: none;
+}
+
+.image-container::before {
+  content: attr(title);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 0.5rem 0.5rem;
+  background-color: rgba(0,0,0,0.8);
+  border: 1px solid #333;
+  box-sizing: border-box;
+  color: white;
+  font-size: 1.2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.5s;
+}
+
+.image-container:active::before {
+  opacity: 1;
+  visibility: visible;
+}
